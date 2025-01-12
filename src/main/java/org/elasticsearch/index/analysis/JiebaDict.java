@@ -4,6 +4,7 @@ package org.elasticsearch.index.analysis;
 import com.huaban.analysis.jieba.WordDictionary;
 import org.elasticsearch.env.Environment;
 
+import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -20,8 +21,9 @@ public class JiebaDict {
                         @Override
                         public void run() {
                             System.out.println("start to load new dict");
+                            File file = environment.pluginsFile().resolve("jieba/dic").toFile();
                             WordDictionary.getInstance()
-                                    .init(environment.pluginsFile().resolve("jieba/dic").toFile());
+                                    .init(file);
                         }
                     };
 
